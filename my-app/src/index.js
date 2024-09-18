@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Library from './chapter_03/Library';
+import Accommodate from './chapter_07/Accommodate';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Library /> 
+    <Accommodate /> 
   </React.StrictMode>,
   document.getElementById('root')
 );
