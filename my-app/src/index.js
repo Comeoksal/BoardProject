@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Accommodate from './chapter_07/Accommodate';
+import ConfirmButton from './chapter_08/ConfirmButton';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Accommodate /> 
+    <ConfirmButton /> 
   </React.StrictMode>,
   document.getElementById('root')
 );

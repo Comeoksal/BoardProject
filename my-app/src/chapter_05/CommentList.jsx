@@ -4,7 +4,7 @@ import Comment from "./Comment";
 const comments = [
     {
         name:"금시언",
-        comment: "안녕하세요 금시입니다.",
+        comment: "안녕하세요 금시입니다.cxd",
     },
     {
         name:"조예원",
