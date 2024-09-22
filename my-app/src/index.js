@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import AttendaceBook from './chapter_10/AttendanceBook';
+import SignUp from './chapter_11/SingUp';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AttendaceBook/> 
+    <SignUp/> 
   </React.StrictMode>,
   document.getElementById('root')
 );
