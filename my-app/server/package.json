@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "backend": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,5 +18,8 @@
     "mongoose": "^8.9.4",
     "mysql": "^2.18.1",
     "node-mysql": "^0.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
