@@ -28,30 +28,7 @@ function PostWritePage(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:3000/save1", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ content }), // 서버로 데이터 전송
-            });
-
-            if (response.ok) {
-                alert("문장이 성공적으로 저장되었습니다!");
-            } else {
-                alert("저장에 실패했습니다.");
-            }
-        } catch (error) {
-            console.error("에러 발생:", error);
-            alert("서버와의 연결에 실패했습니다.");
-        }
-    };
-
     return (
-        <form onSubmit = {handleSubmit}>
         <Wrapper>
             <Container>
                 <TextInput
@@ -65,18 +42,19 @@ function PostWritePage(props) {
                 <TextInput
                     height={480}
                     value={content}
-                    onChange={(e) => {
-                        setContent(e.target.value);
+                    onChange={(event) => {
+                        setContent(event.target.value);
                     }}
                 />
 
                 <Button
                     title='글 작성하기'
-                    onClick={handleSubmit}
+                    onClick={() => {
+                        navigate('/');
+                    }}
                 />
             </Container>
         </Wrapper>
-        </form>
     );
 }
 

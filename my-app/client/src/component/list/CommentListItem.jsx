@@ -22,19 +22,12 @@ const ContentText = styled.p`
     white-space: pre-wrap;
 `;
 
-const DateText = styled.small`
-    font-size: 12px;
-    color: grey;
-    margin-top: 8px;
-`;
-
 function CommentListItem(props) {
     const { comment } = props;
-    const formattedDate = new Date(comment.created_at).toLocaleString();
+
     return (
         <Wrapper>
             <ContentText>{comment.content}</ContentText>
-            <DateText>{formattedDate}</DateText>
         </Wrapper>
     );
 }
