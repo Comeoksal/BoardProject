@@ -1,11 +1,10 @@
 {
-  "type": "module",
   "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node fastify.js",
+    "start": "node fastify.ts",
     "back": "nodemon fastify.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
