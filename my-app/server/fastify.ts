@@ -1,14 +1,14 @@
 import Fastify from "fastify";
-import { SERVER_PORT } from "./config.ts";
+//import { SERVER_PORT } from "./config.ts";
 const fastify = Fastify({
     logger: true,
 });
-
+const SERVER_PORT = 5000;
 fastify.get('/', async (req, res) => {
     return { hello: "world" };
 });
-fastify.get('/test1', async (req, res) => {
-    return { test1: "Hi" };
+fastify.get('/ping', async (req, res) => {
+    return { hi: "hi" };
 })
 const start = async () => {
     try {
