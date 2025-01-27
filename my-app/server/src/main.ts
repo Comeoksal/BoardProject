@@ -1,9 +1,8 @@
 import Fastify from "fastify";
-//import { SERVER_PORT } from "./config.ts";
+import { SERVER_PORT } from "./config.ts";
 const fastify = Fastify({
     logger: true,
 });
-const SERVER_PORT = 5000;
 const articleSchema = {
     schema: {
         Headers: {
