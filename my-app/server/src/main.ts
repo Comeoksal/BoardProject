@@ -1,39 +1,16 @@
 import Fastify from "fastify";
 import { SERVER_PORT } from "./config.ts";
+import { articles } from "./controller/articles.ts";
 const fastify = Fastify({
     logger: true,
 });
-const articleSchema = {
-    schema: {
-        Headers: {
-            type: 'object',
-            properties: {
-                authorization: { type: 'string' }
-            },
-            required: ['authorization'],
-        },
-        response: {
-            200: {
-                type: 'object',
-                properties: {
-                    hello: { type: 'string' },
-                    name: { type: 'string' },
-                    age: { type: 'number' },
-                }
-            }
-        }
-    }
-}
-fastify.get('/', async (req, res) => {
+fastify.get('/', async (req, reply) => {
     return { hello: "world!!" };
 });
-fastify.get('/articles', articleSchema, async (req, res) => {
-    return { hello: 'world', name: 'kim', age: '9' };
-});
-fastify.get('/ping', async (req, res) => {
+fastify.get('/ping', async (req, reply) => {
     return 'pong\n';
 });
-
+fastify.register(articles);
 const start = async () => {
     try {
         await fastify.listen({ port: SERVER_PORT, host: '127.0.0.1' });
