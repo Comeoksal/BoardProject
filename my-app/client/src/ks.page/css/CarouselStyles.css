@@ -1,0 +1,55 @@
+/* Carousel 전체를 화면 전체로 설정 */
+.carousel-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 각 슬라이드(이미지가 포함된 박스)를 화면 전체로 확장 */
+.carousel-item {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d3d3d3;
+    /* 기본 회색 배경 (필요 시 변경 가능) */
+}
+
+/* 이미지가 들어있는 박스 스타일 (여기서 배경색을 변경 가능) */
+.carousel-image-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    /* 원하는 배경색으로 변경 (예: 검정색) */
+}
+
+/* 이미지 크기 조정 */
+.carousel-image-container {
+    max-width: 50%;
+    /* 이미지가 너무 커지지 않도록 제한 */
+    max-height: 70vh;
+    object-fit: contain;
+    background-color: #000;
+    /* 검은색 */
+    /* 비율 유지하며 박스 안에서 정렬 */
+}
+
+/* 캡션 스타일 */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+}

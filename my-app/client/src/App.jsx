@@ -7,6 +7,12 @@ import {
 } from "react-router-dom";
 import styled from 'styled-components';
 import MainPage from './ks.page/page/MainPage';
+import LoginPage from './ks.page/page/LoginPage'
+import ChatPage from './ks.page/page/ChatPage'
+import BoardPage from './ks.page/page/BoardPage'
+import Navbars from './ks.page/ui/Navbars';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const MainTitleTextButton = styled.header`
     display: 'flex';
@@ -32,11 +38,12 @@ function App() {
 
     return (
         <BrowserRouter>
-            <MainTitleTextButton>
-                <LinkToMain to="/">KS Page</LinkToMain>
-            </MainTitleTextButton>
+            <Navbars />
             <Routes>
                 <Route index element={<MainPage />} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path='/boardroom' element={<BoardPage />} />
+                <Route path='/chatroom' element={<ChatPage />} />
             </Routes>
         </BrowserRouter>
     );
