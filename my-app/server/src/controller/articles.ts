@@ -22,7 +22,7 @@ const articleSchema = {
     }
 }
 
-export async function articles(fastify: FastifyInstance, options: FastifyPluginOptions) {
+export default async function articles(fastify: FastifyInstance, options: FastifyPluginOptions) {
     fastify.get('/articles', articleSchema, async (req: FastifyRequest, reply: FastifyReply) => {
         return { hello: 'world', name: 'kim', age: '9' };
     });

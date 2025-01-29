@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const config = require('./config/dev');
 mongoose.connect(config.mongoURI).then(() => console.log('MongoDb Connected...')).catch(err => console.log(err));
 
-const { User } = require("./models/User");
-const { auth } = require('./middleware/auth')
+const { User } = require("./src/models/User");
+const { auth } = require('./src/middleware/auth')
 //express 연동
 const express = require('express');
 const app = express();
