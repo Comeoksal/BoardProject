@@ -34,15 +34,15 @@ const StyledInput = styled.input`
         border-color: #007bff;
     }
 `;
-export default function Input_Password(props) {
-    const { Password, onChange } = props;
+export default function Input_PasswordCheck(props) {
+    const { PasswordCheck, onChange } = props;
     const [showPassword, setShowPassword] = useState(false);
     const showHandler = () => {
         setShowPassword((prev) => !prev);
     }
     return (
         <InputContainer>
-            <StyledInput type={showPassword ? "text" : "password"} placeholder={"비밀번호"} value={Password} onChange={onChange} />
+            <StyledInput type={showPassword ? "text" : "password"} placeholder={"비밀번호 확인"} value={PasswordCheck} onChange={onChange} />
             <IconButton onClick={showHandler}>
                 {/* 상태에 따라 아이콘 변경 */}
                 {showPassword ? (
