@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.6675c0c7.css",
-    "main.js": "/static/js/main.dee184b2.js",
-    "static/js/453.ed3810f9.chunk.js": "/static/js/453.ed3810f9.chunk.js",
-    "static/media/Europa.png": "/static/media/Europa.31e1a695c83800006545.png",
-    "static/media/post_write.jpg": "/static/media/post_write.ddea372972e314a89e0a.jpg",
-    "static/media/register_milky.webp": "/static/media/register_milky.bfd0fa00770245a7eab0.webp",
-    "static/media/board_back.jpg": "/static/media/board_back.9f9840d30d74a49f89eb.jpg",
-    "static/media/milkyway.webp": "/static/media/milkyway.bb3fee3e2a0a2176802a.webp",
-    "static/media/Ganymede.jpg": "/static/media/Ganymede.3def84bd5541ec1e8e1f.jpg",
-    "static/media/Io.jpg": "/static/media/Io.b99b1ca2b0291279cac5.jpg",
-    "index.html": "/index.html",
-    "main.6675c0c7.css.map": "/static/css/main.6675c0c7.css.map",
-    "main.dee184b2.js.map": "/static/js/main.dee184b2.js.map",
-    "453.ed3810f9.chunk.js.map": "/static/js/453.ed3810f9.chunk.js.map"
+    "main.css": "/ReactStudy/static/css/main.6675c0c7.css",
+    "main.js": "/ReactStudy/static/js/main.3c2679e6.js",
+    "static/js/453.ed3810f9.chunk.js": "/ReactStudy/static/js/453.ed3810f9.chunk.js",
+    "static/media/Europa.png": "/ReactStudy/static/media/Europa.31e1a695c83800006545.png",
+    "static/media/post_write.jpg": "/ReactStudy/static/media/post_write.ddea372972e314a89e0a.jpg",
+    "static/media/register_milky.webp": "/ReactStudy/static/media/register_milky.bfd0fa00770245a7eab0.webp",
+    "static/media/board_back.jpg": "/ReactStudy/static/media/board_back.9f9840d30d74a49f89eb.jpg",
+    "static/media/milkyway.webp": "/ReactStudy/static/media/milkyway.bb3fee3e2a0a2176802a.webp",
+    "static/media/Ganymede.jpg": "/ReactStudy/static/media/Ganymede.3def84bd5541ec1e8e1f.jpg",
+    "static/media/Io.jpg": "/ReactStudy/static/media/Io.b99b1ca2b0291279cac5.jpg",
+    "index.html": "/ReactStudy/index.html",
+    "main.6675c0c7.css.map": "/ReactStudy/static/css/main.6675c0c7.css.map",
+    "main.3c2679e6.js.map": "/ReactStudy/static/js/main.3c2679e6.js.map",
+    "453.ed3810f9.chunk.js.map": "/ReactStudy/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6675c0c7.css",
-    "static/js/main.dee184b2.js"
+    "static/js/main.3c2679e6.js"
   ]
 }
