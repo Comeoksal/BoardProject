@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
+import React from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./ks.page/page/MainPage";
 import LoginPage from "./ks.page/page/LoginPage";
 import ChatPage from "./ks.page/page/ChatPage";
@@ -16,7 +15,7 @@ import { AuthProvider } from "./ks.page/contextAPI/AuthContext";
 function App() {
     return (
         <AuthProvider>
-            <BrowserRouter>
+            <Router>
                 <Navbars />
                 <Routes>
                     <Route index element={<MainPage />} />
@@ -27,7 +26,7 @@ function App() {
                     <Route path="/postwriteroom" element={<PostWritePage />} />
                     <Route path="/postviewroom/:postId" element={<PostViewPage />} />
                 </Routes>
-            </BrowserRouter>
+            </Router>
         </AuthProvider>
     );
 }
