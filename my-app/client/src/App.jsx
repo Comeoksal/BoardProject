@@ -15,7 +15,7 @@ import { AuthProvider } from "./ks.page/contextAPI/AuthContext";
 function App() {
     return (
         <AuthProvider>
-            <BrowserRouter basename="/my-app/client">
+            <BrowserRouter>
                 <Navbars />
                 <Routes>
                     <Route index element={<MainPage />} />
