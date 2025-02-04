@@ -8,28 +8,26 @@ interface AuthRequest extends FastifyRequest {
     };
 }
 // 인증 미들웨어
-const auth = async (req: AuthRequest, reply: FastifyReply) => {
+export const auth = async (req: AuthRequest, reply: FastifyReply) => {
     try {
-        // 클라이언트 쿠키에서 토큰을 가져온다.
-        const token = req.cookies?.x_auth;
 
+        const token = req.cookies?.x_auth;
+        console.log("Received token:", token);  // 디버깅: 토큰 확인
         if (!token) {
+            console.error("No token provided");
             return reply.status(401).send({ isAuth: false, error: 'No token provided' });
         }
 
-        // 토큰을 복호화한 후 유저를 찾는다.
         const user = await User.findOne({ token });
 
         if (!user) {
+            console.error("User not found");
             return reply.status(401).send({ isAuth: false, error: 'User not found' });
         }
 
-        // 인증된 유저 정보를 `req` 객체에 저장
         (req as any).user = user;
-        (req as any).token = user.token;
     } catch (err) {
+        console.error("Internal server error:", err);
         return reply.status(500).send({ isAuth: false, error: 'Internal server error' });
     }
 };
-
-export { auth };

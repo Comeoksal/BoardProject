@@ -15,7 +15,7 @@ interface LoginBody {
     password: string;
 }
 
-export default async function authification(fastify: FastifyInstance, options: FastifyPluginOptions) {
+export default async function authentication(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
     // 🔹 회원가입 라우트
     fastify.post('/api/users/register', async (req: FastifyRequest<{ Body: RegisterBody }>, reply: FastifyReply) => {
@@ -24,7 +24,7 @@ export default async function authification(fastify: FastifyInstance, options: F
             const savedUser = await user.save();
             reply.status(200).send({ success: true, doc: savedUser }); // ✅ .json() 대신 .send() 사용
         } catch (err) {
-            reply.status(400).send({ success: false, error: err });
+            reply.status(400).send({ success: false, error: "이미 사용 중인 이메일입니다." });
         }
     });
 
@@ -41,7 +41,11 @@ export default async function authification(fastify: FastifyInstance, options: F
             }
 
             const token = await user.generateToken();
-            reply.setCookie("x_auth", token, { httpOnly: true })
+            reply.setCookie("x_auth", token, {
+                httpOnly: true,   // 보안: 브라우저에서 쿠키 접근 불가
+                secure: true,     // HTTPS 환경에서만 쿠키 전송
+                sameSite: 'none'  // 교차 출처 허용
+            })
                 .status(200)
                 .send({ loginSuccess: true, userId: user._id });
 
@@ -53,29 +57,40 @@ export default async function authification(fastify: FastifyInstance, options: F
 
     // 🔹 인증 확인 (미들웨어 `auth` 필요)
     fastify.get('/api/users/auth', { preHandler: auth }, async (req: FastifyRequest, reply: FastifyReply) => {
-        reply.status(200).send({
-            _id: (req as any).user._id,  // req.user가 TypeScript에 정의되지 않아서 any로 우회
-            isAdmin: (req as any).user.role === 0 ? false : true,
-            isAuth: true,
-            id: (req as any).user.id,
-            email: (req as any).user.email,
-            name: (req as any).user.name,
-            role: (req as any).user.role,
-        });
+        reply.status(200)
+            .send({
+                _id: (req as any).user._id,  // req.user가 TypeScript에 정의되지 않아서 any로 우회
+                isAdmin: (req as any).user.role === 0 ? false : true,
+                isAuth: true,
+                name: (req as any).user.name,
+                email: (req as any).user.email,
+                token: (req as any).user.token,
+            });
     });
 
     // 🔹 로그아웃
-    fastify.get('/api/users/logout', { preHandler: auth }, async (req: FastifyRequest, reply: FastifyReply) => {
+    fastify.post('/api/users/logout', { preHandler: auth }, async (req: FastifyRequest, reply: FastifyReply) => {
         try {
             const user = await User.findOneAndUpdate({ _id: (req as any).user._id }, { token: "" });
 
             if (!user) {
-                return reply.status(400).send({ success: false, message: "로그아웃 실패" });
+                console.error('로그아웃 실패: 유저를 찾지 못함');
+                return reply.status(400).send({ success: false, message: "로그아웃 실패 in back" });
             }
-            return reply.status(200).send({ success: true });
+
+            return reply
+                .clearCookie('x_auth', {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                    path: '/'  // 쿠키 설정 경로 일치
+                })
+                .status(200).send({ success: true });
 
         } catch (err) {
-            reply.status(500).send({ success: false, error: "서버 에러 발생" });
+            console.error("로그아웃 도중 서버 에러:", err);
+            return reply.status(500).send({ success: false, error: "서버 에러 발생" });
         }
     });
+
 }
