@@ -8,8 +8,8 @@ import Button from "./Inputs/Button";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import { CONFIG } from "../config.ts"
 const Wrapper = styled.div`
-    width : 1000px;
-    height : 800px;
+    width : 70%;
+    height : 100%;
     display : flex;
     flex-direction : column;
     align-items : flex-start;
@@ -45,7 +45,7 @@ export default function Standard_PostWrite(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [anonymous, setAnonymous] = useState(false);
-    const author = user.name;
+    const author = user?.name || "익명";
     const handleUploadPost = async () => {
         try {
             const response = await fetch(CONFIG.BACK_SERVER + "/api/posts/upload", {

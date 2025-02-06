@@ -12,6 +12,7 @@ const Container = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed; /* 배경 고정 */
+    overflow:auto;
 `;
 
 export default function PostWritePage(props) {

@@ -1,9 +1,9 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import Fastify from "fastify";
 import cors from '@fastify/cors'
-import { CONFIG } from "./config.ts";
-
 import mongoose from "mongoose";
-mongoose.connect(CONFIG.MongoURI)
+mongoose.connect(process.env.MongoURI!)
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err))
 import { User } from "./models/User";
@@ -11,7 +11,7 @@ import fastifyCookie from "@fastify/cookie";
 //Autoload 5 line
 import autoload from "@fastify/autoload";
 import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { dirname, join, resolve } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 //
@@ -25,7 +25,6 @@ fastify.register(cors, {
         const allowedOrigins = [
             "http://localhost:3000",
             "http://192.168.219.103:3000",
-            CONFIG.FRONT_SERVER,
         ];
 
         // 🔥 origin이 없거나 허용된 도메인에 포함되면 허용
@@ -56,9 +55,10 @@ fastify.get('/', async (req, reply) => {
     reply.send({ message: '백엔드 콘솔 출력 완료' });
 });
 const start = async () => {
+    const PORT = parseInt(process.env.PORT!);
     try {
-        await fastify.listen({ port: CONFIG.PORT, host: '0.0.0.0' });
-        console.log(`Fastify Server Running at ${CONFIG.PORT} port`);
+        await fastify.listen({ port: PORT, host: '0.0.0.0' });
+        console.log(`Fastify Server Running at ${PORT} port`);
     } catch (err) {
         fastify.log.error(err);
         process.exit(1);
