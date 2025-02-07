@@ -14,10 +14,9 @@ const StyledTextarea = styled.textarea`
     border-radius : 8px;
 `;
 
-function TextInput(props) {
-    const { height, value, onChange, placeholder } = props;
+function TextInput({ height, value, onChange, placeholder, ref }) {
 
-    return <StyledTextarea height={height} value={value} onChange={onChange} placeholder={placeholder} />;
+    return <StyledTextarea height={height} value={value} onChange={onChange} placeholder={placeholder} ref={ref} />;
 }
 
 export default TextInput;

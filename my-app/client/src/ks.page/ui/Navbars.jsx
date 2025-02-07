@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextAPI/AuthContext";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -16,7 +17,7 @@ const StyledSpan = styled.span`
 `
 export default function Navbars() {
     const { isLoggedIn, user, fetchUserInfo } = useAuth();
-
+    const navigate = useNavigate();
     const handleLogout = async () => {
         try {
             const response = await axios.post(CONFIG.BACK_SERVER + '/api/users/logout', {}, {
@@ -25,6 +26,7 @@ export default function Navbars() {
 
             if (response.data.success) {
                 console.log("로그아웃 성공");
+                await navigate('/');
                 await fetchUserInfo();  // 상태 갱신
             } else {
                 alert("로그아웃 실패");
@@ -33,7 +35,18 @@ export default function Navbars() {
             console.error("Logout failed", error);
         }
     };
-
+    const handleBoardroom = async () => {
+        try {
+            if (!isLoggedIn) {
+                await alert('로그인이 필요합니다.');
+                navigate("/loginroom");
+            } else {
+                await navigate("/boardroom")
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
@@ -41,7 +54,7 @@ export default function Navbars() {
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-                        <Nav.Link href="/boardroom">게시판</Nav.Link>
+                        <Nav.Link onClick={handleBoardroom}>게시판</Nav.Link>
                         <Nav.Link href="/chatroom">채팅방</Nav.Link>
                         <NavDropdown title="Link" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="https://github.com/Ksieon">GitHub</NavDropdown.Item>

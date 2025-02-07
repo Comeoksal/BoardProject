@@ -8,11 +8,12 @@ import Button from "./Inputs/Button";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import { CONFIG } from "../config.ts"
 const Wrapper = styled.div`
-    width : 70%;
+    width : 60%;
     height : 100%;
     display : flex;
     flex-direction : column;
     align-items : flex-start;
+    justify-content : center;
     gap : 8px;
 `
 const BackButtonContainer = styled.div`
@@ -45,7 +46,7 @@ export default function Standard_PostWrite(props) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [anonymous, setAnonymous] = useState(false);
-    const author = user?.name || "익명";
+    const author = user.name;
     const handleUploadPost = async () => {
         try {
             const response = await fetch(CONFIG.BACK_SERVER + "/api/posts/upload", {
@@ -84,7 +85,7 @@ export default function Standard_PostWrite(props) {
                 <TextInput value={content} onChange={(e) => { setContent(e.target.value) }} placeholder={"내용을 입력해주세요."} height={"600"} />
             </InputContainer>
             <FinishedButtonContainer>
-                <ToggleButton title="익명" onClick={handleAnonymous} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} />
+                <ToggleButton title="익명✅" onClick={handleAnonymous} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} />
                 <Button title={"완료"} onClick={handleUploadPost} disabled={title.length === 0 || content.length === 0} />
             </FinishedButtonContainer>
         </Wrapper>

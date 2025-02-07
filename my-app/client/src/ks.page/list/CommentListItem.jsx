@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
     width: 100%;
+    height : 10%;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     justify-content: center;
     border: 3px solid white;
     border-radius: 8px;
-    cursor: pointer;
     color : rgb(255, 255, 255);
     :hover {
         background: white;
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
     };
     gap : 8px;
 `
-const StyledTitle = styled.p`
+const StyledComment = styled.p`
     font-size : 20px;
     font-weight : 500;
 `
@@ -27,13 +26,11 @@ const StyledAuthor = styled.p`
     font-size : 15px;
     font-weight : 500;
 `
-export default function PostListItem(props) {
-    const navigate = useNavigate();
-    const { title, author, onClick } = props
+export default function CommentListItem({ comment, author }) {
     return (
-        <Wrapper onClick={onClick}>
-            <StyledTitle>{title}</StyledTitle>
+        <Wrapper >
             <StyledAuthor>{author}</StyledAuthor>
+            <StyledComment>{comment}</StyledComment>
         </Wrapper>
     )
 }

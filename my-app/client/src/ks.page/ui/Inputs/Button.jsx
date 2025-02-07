@@ -19,9 +19,9 @@ const StyledButton = styled.button`
 `;
 
 function Button(props) {
-    const { title, onClick, borderColor, textColor, bgColor, hovertextColor, hoverbgColor } = props;
+    const { title, onClick, borderColor, textColor, bgColor, hovertextColor, hoverbgColor, disabled } = props;
 
-    return <StyledButton onClick={onClick} borderColor={borderColor} textColor={textColor} bgColor={bgColor} hovertextColor={hovertextColor} hoverbgColor={hoverbgColor}>{title || "button"}</StyledButton>;
+    return <StyledButton onClick={onClick} borderColor={borderColor} textColor={textColor} bgColor={bgColor} hovertextColor={hovertextColor} hoverbgColor={hoverbgColor} disabled={disabled}>{title || "button"}</StyledButton>;
 }
 
 export default Button;
