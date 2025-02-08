@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import board_back from "../images/board_back.jpg"
-import Standard_Board from "../ui/Standard_Board";
+import StandardBoard from "../ui/StandardBoard";
 const Container = styled.div`
         display : flex;
         justify-content : center;
@@ -15,10 +15,10 @@ const Container = styled.div`
     overflow:auto;
 `;
 
-export default function BoardPage(props) {
+export default function BoardPage() {
     return (
         <Container>
-            <Standard_Board />
+            <StandardBoard />
         </Container>
     )
 }

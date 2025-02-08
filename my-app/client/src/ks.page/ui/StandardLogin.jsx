@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
-import Input_Email from "./Inputs/InputEmail.jsx";
-import Input_Password from "./Inputs/InputPassword.jsx";
+import InputEmail from "./Inputs/InputEmail.jsx";
+import InputPassword from "./Inputs/InputPassword.jsx";
 import Button from "./Inputs/Button.jsx";
 import { CONFIG } from "../config.ts"
 const StyledP = styled.p`
@@ -93,8 +93,8 @@ export default function Standard_Login() {
         <Wrapper>
             <StyledP>로그인</StyledP>
             <InputContainer>
-                <Input_Email Email={email} onChange={(e) => setEmail(e.target.value)} />
-                <Input_Password Password={password} onChange={(e) => setPassword(e.target.value)} />
+                <InputEmail Email={email} onChange={(e) => setEmail(e.target.value)} />
+                <InputPassword Password={password} onChange={(e) => setPassword(e.target.value)} />
             </InputContainer>
             <MainButtonContainer>
                 <Button title="로그인" onClick={handleLogin} bgColor="" hoverColor="" />

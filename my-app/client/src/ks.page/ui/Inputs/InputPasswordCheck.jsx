@@ -34,6 +34,7 @@ const StyledInput = styled.input`
         border-color: #007bff;
     }
 `;
+
 export default function Input_PasswordCheck({ PasswordCheck, onChange }) {
     const [showPassword, setShowPassword] = useState(false);
     const showHandler = () => {

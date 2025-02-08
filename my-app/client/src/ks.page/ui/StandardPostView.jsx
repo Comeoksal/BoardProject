@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
 import Button from "./Inputs/Button.jsx";
-import ToggleButton_Like from './Inputs/ToggleButton_Like.jsx'
+import ToggleButtonLike from './Inputs/ToggleButtonLike.jsx'
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import TextInput from "./Inputs/TextInput.jsx";
 import { CONFIG } from "../config.ts";
@@ -53,7 +53,7 @@ const FinishedButtonContainer = styled.div`
     gap : 4px;
     margin-left: auto;
 `
-export default function Standard_PostView(props) {
+export default function Standard_PostView() {
     const navigate = useNavigate();
     const { user } = useAuth();
     const { postId } = useParams();
@@ -157,7 +157,7 @@ export default function Standard_PostView(props) {
                 <StyledContent>{content}</StyledContent>
             </PostContainer>
             <ButtonsContainer>
-                <ToggleButton_Like title={`❤️좋아요 ${like_count}`} onClick={handleLike} isUserLike={isUserLike} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} />
+                <ToggleButtonLike title={`❤️좋아요 ${like_count}`} onClick={handleLike} isUserLike={isUserLike} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} />
                 <Button title={`💭댓글 ${comment_count}`} onClick={handleComment} />
             </ButtonsContainer>
             <CommentInputContainer>

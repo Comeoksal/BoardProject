@@ -12,7 +12,7 @@ const Container = styled.div`
   overflow: hidden; /* 화면 넘침 방지 */
 `;
 
-export default function MainPage(props) {
+export default function MainPage() {
   return (
     <Container>
       <CarouselFadeExample />
