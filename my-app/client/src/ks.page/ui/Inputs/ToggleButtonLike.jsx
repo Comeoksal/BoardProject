@@ -11,7 +11,7 @@ const StyledToggleButton = styled.button`
     border-radius: 8px;
     transition: background-color 0.2s, color 0.2s;
 
-    color: ${({ isActive, hovertextColor, textColor }) =>
+    color: ${({ isActive, textColor }) =>
         isActive
             ? "rgb(255, 255, 255)"  /* 활성화 시 텍스트는 흰색 */
             : (textColor || "rgb(15, 138, 81)")}; /* 비활성화 시 기본 텍스트 색상 */
@@ -22,7 +22,7 @@ const StyledToggleButton = styled.button`
             : (bgColor || "rgb(255, 255, 255)")};  /* 비활성화 시 배경색 */
 
     &:hover {
-        color: ${({ isActive, textColor, hovertextColor }) =>
+        color: ${({ isActive, hovertextColor }) =>
         isActive
             ? (hovertextColor || "rgb(15, 138, 81)")  /* 활성화 시 텍스트 색상 */
             : "rgb(255, 255, 255)"};  /* 비활성화 시 텍스트는 흰색 */

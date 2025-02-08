@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import postwriteImage from "../images/post_write.jpg"
-import Standard_PostWrite from "../ui/Standard_PostWrite";
+import StandardPostWrite from "../ui/StandardPostWrite";
 const Container = styled.div`
     display : flex;
     justify-content : center;
@@ -15,10 +15,10 @@ const Container = styled.div`
     overflow:auto;
 `;
 
-export default function PostWritePage(props) {
+export default function PostWritePage() {
     return (
         <Container>
-            <Standard_PostWrite />
+            <StandardPostWrite />
         </Container>
     )
 }

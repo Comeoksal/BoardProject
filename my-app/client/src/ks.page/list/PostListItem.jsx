@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -27,9 +26,7 @@ const StyledAuthor = styled.p`
     font-size : 15px;
     font-weight : 500;
 `
-export default function PostListItem(props) {
-    const navigate = useNavigate();
-    const { title, author, onClick } = props
+export default function PostListItem({ title, author, onClick }) {
     return (
         <Wrapper onClick={onClick}>
             <StyledTitle>{title}</StyledTitle>

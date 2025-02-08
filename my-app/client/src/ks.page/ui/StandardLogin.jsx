@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contextAPI/AuthContext";
+import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
-import Input_Email from "./Inputs/Input_Email";
-import Input_Password from "./Inputs/Input_Password";
-import Button from "./Inputs/Button";
+import Input_Email from "./Inputs/InputEmail.jsx";
+import Input_Password from "./Inputs/InputPassword.jsx";
+import Button from "./Inputs/Button.jsx";
 import { CONFIG } from "../config.ts"
 const StyledP = styled.p`
     position : absolute;
@@ -53,7 +53,7 @@ const SubButtonContainer = styled.div`
     width: 80%;
     gap : 5px; //아이템간의 간격 설정
 `;
-export default function Standard_Login(props) {
+export default function Standard_Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

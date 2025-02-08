@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Standard_Login from "../ui/Standard_Login";
+import StandardLogin from "../ui/StandardLogin";
 import milkyway from "../images/milkyway.webp";
 const Container = styled.div`
     display : flex;
@@ -14,11 +14,10 @@ const Container = styled.div`
     background-color : #000;
 `;
 
-export default function LoginPage(props) {
-    const { setIsLoggedIn } = props;
+export default function LoginPage() {
     return (
         <Container>
-            <Standard_Login setIsLoggedIn={setIsLoggedIn} />
+            <StandardLogin />
         </Container>
     )
 }

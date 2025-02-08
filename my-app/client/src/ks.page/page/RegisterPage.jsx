@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Standard_Register from "../ui/Standard_Register";
+import StandardRegister from "../ui/StandardRegister";
 import register_milky from "../images/register_milky.webp"
 const Container = styled.div`
     display : flex;
@@ -14,10 +14,10 @@ const Container = styled.div`
     background-color : #000;
 `;
 
-export default function RegisterPage(props) {
+export default function RegisterPage() {
     return (
         <Container>
-            <Standard_Register />
+            <StandardRegister />
         </Container>
     )
 }

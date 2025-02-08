@@ -13,8 +13,7 @@ const StyledInput = styled.input`
     border-color : #007bff;
     }
 `;
-export default function Input(props) {
-    const { placeholder, type, value, onChange } = props;
+export default function Input({ placeholder, type, value, onChange }) {
     return (
         <StyledInput type={type} value={value} placeholder={placeholder || "입력"} onChange={onChange} ></StyledInput>
     )

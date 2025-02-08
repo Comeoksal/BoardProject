@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
@@ -14,8 +14,7 @@ const StyledInput = styled.input`
     border-color : #007bff;
     }
 `;
-export default function Input_Email(props) {
-    const { Email, onChange } = props;
+export default function Input_Email({ Email, onChange }) {
     return (
         <StyledInput type={"text"} placeholder={"이메일 : example@gmail.com"} value={Email} onChange={onChange}></StyledInput>
     )

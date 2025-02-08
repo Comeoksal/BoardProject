@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Eye, EyeOff } from "react-feather";
+
 const InputContainer = styled.div`
     position: relative;
     width: 100%;
@@ -34,8 +34,7 @@ const StyledInput = styled.input`
         border-color: #007bff;
     }
 `;
-export default function Input_PasswordCheck(props) {
-    const { PasswordCheck, onChange } = props;
+export default function Input_PasswordCheck({ PasswordCheck, onChange }) {
     const [showPassword, setShowPassword] = useState(false);
     const showHandler = () => {
         setShowPassword((prev) => !prev);

@@ -26,7 +26,7 @@ const PostListContainer = styled.div`
     align-items : flex-start;
     justify-content : center;
 `
-export default function Standard_Board(props) {
+export default function Standard_Board() {
     const navigate = useNavigate();
     const { isLoggedIn } = useAuth();
     const handleWrite = async () => {

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contextAPI/AuthContext";
+import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
-import Input_Email from "./Inputs/Input_Email";
-import Input_Password from "./Inputs/Input_Password";
-import Input_PasswordCheck from "./Inputs/Input_PasswordCheck.jsx";
-import Button from "./Inputs/Button";
+import InputEmail from "./Inputs/InputEmail.jsx";
+import InputPassword from "./Inputs/InputPassword.jsx";
+import InputPasswordCheck from "./Inputs/InputPasswordCheck.jsx";
+import Button from "./Inputs/Button.jsx";
 import Input from "./Inputs/Input.jsx";
 import { CONFIG } from "../config.ts"
+
 const Wrapper = styled.div`
     width: 500px; /* 너비 */
   height: 700px; /* 높이 */
@@ -62,13 +63,14 @@ const SubExplanationP = styled.span`
     color: rgb(0, 0, 0);
     text-shadow : 0.5px 0.5px 1px rgba(255, 255, 255, 0.8);
 `;
-export default function Standard_Register(props) {
+export default function Standard_Register() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('');
     const [name, setName] = useState('');
     const { fetchUserInfo } = useAuth();
+
     const handleRegister = async () => {
         if (email === "" || password === "" || passwordCheck === "" || name === "") {
             return alert("모든 입력칸은 필수 입력 사항입니다!");
@@ -111,20 +113,20 @@ export default function Standard_Register(props) {
                     <MainExplanationP>*이메일</MainExplanationP>
                     <SubExplanationP>(아이디로 사용됩니다.)</SubExplanationP>
                 </MainExplanationContainer>
-                <Input_Email Email={email} onChange={(e) => setEmail(e.target.value)} />
+                <InputEmail Email={email} onChange={(e) => setEmail(e.target.value)} />
             </FormBoxContainer>
             <FormBoxContainer>
                 <MainExplanationContainer >
                     <MainExplanationP>*비밀번호</MainExplanationP>
                     <SubExplanationP>(아무거나 대충 지어주세요.)</SubExplanationP>
                 </MainExplanationContainer>
-                <Input_Password Password={password} onChange={(e) => setPassword(e.target.value)} />
+                <InputPassword Password={password} onChange={(e) => setPassword(e.target.value)} />
             </FormBoxContainer>
             <FormBoxContainer>
                 <MainExplanationContainer >
                     <MainExplanationP>*비밀번호 확인</MainExplanationP>
                 </MainExplanationContainer>
-                <Input_PasswordCheck PasswordCheck={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} />
+                <InputPasswordCheck PasswordCheck={passwordCheck} onChange={(e) => setPasswordCheck(e.target.value)} />
             </FormBoxContainer>
             <FormBoxContainer>
                 <MainExplanationContainer>

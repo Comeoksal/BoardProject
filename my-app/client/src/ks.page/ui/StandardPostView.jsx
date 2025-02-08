@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
-import Button from "./Inputs/Button";
+import Button from "./Inputs/Button.jsx";
 import ToggleButton_Like from './Inputs/ToggleButton_Like.jsx'
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import TextInput from "./Inputs/TextInput.jsx";

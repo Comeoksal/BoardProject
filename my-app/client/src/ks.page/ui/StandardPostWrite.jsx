@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contextAPI/AuthContext";
+import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
-import Input from "./Inputs/Input";
-import TextInput from "./Inputs/TextInput";
-import Button from "./Inputs/Button";
+import Input from "./Inputs/Input.jsx";
+import TextInput from "./Inputs/TextInput.jsx";
+import Button from "./Inputs/Button.jsx";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import { CONFIG } from "../config.ts"
 const Wrapper = styled.div`
@@ -40,7 +40,7 @@ const FinishedButtonContainer = styled.div`
     margin-left: auto;
     gap : 8px;
 `
-export default function Standard_PostWrite(props) {
+export default function Standard_PostWrite() {
     const navigate = useNavigate();
     const { fetchUserInfo, user } = useAuth();
     const [title, setTitle] = useState('');

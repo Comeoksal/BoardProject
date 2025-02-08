@@ -1,5 +1,5 @@
 import React from "react";
-import Standard_PostView from "../ui/Standard_PostView";
+import Standard_PostView from "../ui/StandardPostView";
 import board_back from "../images/board_back.jpg"
 import styled from "styled-components";
 const Container = styled.div`
@@ -14,7 +14,7 @@ const Container = styled.div`
        background-attachment: fixed; /* 배경 고정 */
        overflow : auto;
 `
-export default function PostViewPage(props) {
+export default function PostViewPage() {
     return (
         <Container>
             <Standard_PostView />

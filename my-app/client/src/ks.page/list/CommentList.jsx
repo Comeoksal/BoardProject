@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CommentListItem from "./CommentListItem";
 import { CONFIG } from "../config.ts"
-import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
     width : 100%;
@@ -12,7 +11,6 @@ const Wrapper = styled.div`
     justify-content: center;
 `
 export default function CommentList({ postId }) {
-    const navigate = useNavigate();
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
@@ -35,7 +33,7 @@ export default function CommentList({ postId }) {
             }
         }
         fetchComments();
-    }, []);
+    }, [postId]);
 
     return (
         <Wrapper>
