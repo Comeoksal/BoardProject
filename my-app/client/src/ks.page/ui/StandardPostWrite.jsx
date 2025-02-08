@@ -8,8 +8,8 @@ import Button from "./Inputs/Button.jsx";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import { CONFIG } from "../config.ts"
 const Wrapper = styled.div`
-    width : 60%;
-    height : 100%;
+    width : 1000px;
+    height : 800px;
     display : flex;
     flex-direction : column;
     align-items : flex-start;
