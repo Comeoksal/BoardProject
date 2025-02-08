@@ -24,6 +24,7 @@ fastify.register(cors, {
         const allowedOrigins = [
             "http://localhost:3000",
             "https://kspage.netlify.app",
+            "https://reactstudy.onrender.com",
         ];
 
         // 🔥 origin이 없거나 허용된 도메인에 포함되면 허용

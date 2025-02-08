@@ -1,3 +1,3 @@
 export const CONFIG = {
-    BACK_SERVER: "http://localhost:5000",
+    BACK_SERVER: "https://ksserver-496b.onrender.com/",
 }
