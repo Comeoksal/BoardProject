@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     align-items: flex-start;
     justify-content: center;
 `
-export default function CommentList({ postId }) {
+export default function CommentList({ postId, comment_count }) {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function CommentList({ postId }) {
             }
         }
         fetchComments();
-    }, [postId]);
+    }, [postId, comment_count]);
 
     return (
         <Wrapper>

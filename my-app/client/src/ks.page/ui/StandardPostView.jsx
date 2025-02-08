@@ -107,8 +107,7 @@ export default function Standard_PostView() {
                 body: JSON.stringify({ author })
             })
             if (response.ok) {
-                console.log('좋아요 성공');
-                setLike_count(like_count + 1);
+                await setLike_count(like_count + 1);
             } else {
                 alert('좋아요 실패1');
             }
@@ -167,7 +166,7 @@ export default function Standard_PostView() {
                     <Button title={"등록"} onClick={handleWriteComment} disabled={comment.length === 0} />
                 </FinishedButtonContainer>
             </CommentInputContainer>
-            <CommentList postId={postId} />
+            <CommentList postId={postId} comment_count={comment_count} />
         </Wrapper>
     )
 }
