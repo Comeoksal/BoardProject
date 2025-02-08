@@ -48,7 +48,10 @@ fastify.register(fastifyCookie, {
 });
 //Autoload
 fastify.register(autoload, {
-    dir: join(__dirname, "controller")
+    dir: join(__dirname, "controller"),
+    options: {
+        timeout: 30000  // 30초로 증가
+    }
 });
 const start = async () => {
     const PORT = parseInt(process.env.PORT!);
