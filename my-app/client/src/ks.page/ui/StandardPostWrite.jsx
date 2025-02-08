@@ -8,8 +8,8 @@ import Button from "./Inputs/Button.jsx";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
 import { CONFIG } from "../config.ts"
 const Wrapper = styled.div`
-    width : 1000px;
-    height : 800px;
+    width : 60%;
+    height : 100%;
     display : flex;
     flex-direction : column;
     align-items : flex-start;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 const BackButtonContainer = styled.div`
     width : 10%;
     display : flex;
-    flex-direction : column;
+    flex-direction : row;
     align-items : flex-start;
     justify-content : center;
 `
@@ -34,7 +34,7 @@ const InputContainer = styled.div`
 const FinishedButtonContainer = styled.div`
     width: 20%;
     display: flex;
-    flex-direction: flex-start;
+    flex-direction: row;
     align-items: flex-end;
     justify-content: center;
     margin-left: auto;
