@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
-import { Post } from "../models/Post.ts";
+import { Post } from "@models/Post.ts";
 interface UploadBody {
     author: string;
     title: string;
