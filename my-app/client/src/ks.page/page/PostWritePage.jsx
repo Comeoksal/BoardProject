@@ -6,7 +6,7 @@ const Container = styled.div`
     display : flex;
     justify-content : center;
     align-items : center;
-    height: 94vh;
+    min-height: 94vh;
     background-image : url(${postwriteImage});  
     background-size: cover;
     background-repeat: no-repeat;
