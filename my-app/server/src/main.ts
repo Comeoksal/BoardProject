@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 mongoose.connect(process.env.MongoURI!)
     .then(() => console.log('MongoDB Connected...'))
     .catch(err => console.log(err))
-import { User } from "./models/User";
 import fastifyCookie from "@fastify/cookie";
 //Autoload 5 line
 import autoload from "@fastify/autoload";
