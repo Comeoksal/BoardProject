@@ -55,7 +55,7 @@ export default function Navbars() {
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" navbarScroll>
                         <Nav.Link onClick={handleBoardroom}>게시판</Nav.Link>
-                        <Nav.Link href="/chatroom">채팅방</Nav.Link>
+                        <Nav.Link onClick={navigate('/chatroom')}>채팅방</Nav.Link>
                         <NavDropdown title="Link" id="navbarScrollingDropdown">
                             <NavDropdown.Item href="https://github.com/Ksieon">GitHub</NavDropdown.Item>
                             <NavDropdown.Item href="https://www.notion.so/afe1d291cefa46b0bae463488592f55b">Notion</NavDropdown.Item>
@@ -68,7 +68,7 @@ export default function Navbars() {
                                 <Button variant="outline-danger" onClick={handleLogout}>로그아웃</Button>
                             </>
                         ) : (
-                            <Button variant="outline-success" href="/loginroom">로그인</Button>
+                            <Button variant="outline-success" onClick={navigate('/loginroom')}>로그인</Button>
                         )}
                     </Form>
                 </Navbar.Collapse>
