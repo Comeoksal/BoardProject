@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { User } from '@models/User.ts';
+import { User } from '@models/User';
 
 // 쿠키 타입이 포함된 FastifyRequest 확장
 interface AuthRequest extends FastifyRequest {

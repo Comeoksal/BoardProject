@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
-import { User } from "@models/User.ts";
-import { auth } from "@middleware/auth.ts";
+import { User } from "@models/User";
+import { auth } from "@middleware/auth";
 
 // ✅ 요청 바디 타입 정의
 interface RegisterBody {
