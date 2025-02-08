@@ -24,7 +24,7 @@ fastify.register(cors, {
     origin: (origin, callback) => {
         const allowedOrigins = [
             "http://localhost:3000",
-            "http://192.168.219.103:3000",
+            "https://kspage.netlify.app",
         ];
 
         // 🔥 origin이 없거나 허용된 도메인에 포함되면 허용
@@ -49,10 +49,6 @@ fastify.register(fastifyCookie, {
 //Autoload
 fastify.register(autoload, {
     dir: join(__dirname, "controller")
-});
-fastify.get('/', async (req, reply) => {
-    console.log('클라이언트가 루트 경로로 접근');
-    reply.send({ message: '백엔드 콘솔 출력 완료' });
 });
 const start = async () => {
     const PORT = parseInt(process.env.PORT!);
