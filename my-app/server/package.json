@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/src/main.js",
+    "start": "node --experimental-specifier-resolution=node dist/main.js",
     "dev": "nodemon --watch src --exec node --loader ts-node/esm src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
