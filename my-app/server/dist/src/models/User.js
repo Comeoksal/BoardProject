@@ -1,0 +1,91 @@
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+const saltRounds = 10;
+const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        maxlength: 50,
+        required: true,
+    },
+    email: {
+        type: String,
+        trim: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        maxlength: 100,
+        required: true,
+    },
+    token: {
+        type: String,
+    },
+    tokenExp: {
+        type: Number,
+    },
+    role: {
+        type: Number,
+        default: 0,
+    },
+});
+// 비밀번호 암호화 (pre-hook)
+userSchema.pre('save', function (next) {
+    const user = this;
+    if (user.isModified('password')) {
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+            if (err)
+                return next(err);
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                if (err)
+                    return next(err);
+                user.password = hash;
+                next();
+            });
+        });
+    }
+    else {
+        next();
+    }
+});
+// 메서드: 비밀번호 비교
+userSchema.methods.comparePassword = function (plainPassword) {
+    const user = this;
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(plainPassword, user.password, (err, isMatch) => {
+            if (err)
+                return reject(err);
+            resolve(isMatch);
+        });
+    });
+};
+// 메서드: 토큰 생성
+userSchema.methods.generateToken = async function () {
+    const user = this;
+    const token = jwt.sign(user._id.toHexString(), 'secretToken');
+    user.token = token;
+    try {
+        await user.save();
+        return token;
+    }
+    catch (err) {
+        throw err;
+    }
+};
+// 메서드: 토큰으로 사용자 찾기
+userSchema.methods.findbyToken = async function (token) {
+    try {
+        const decoded = jwt.verify(token, 'secretToken');
+        const user = await this.constructor.findOne({
+            _id: decoded,
+            token: token,
+        });
+        return user;
+    }
+    catch (err) {
+        throw err;
+    }
+};
+// 모델 생성
+export const User = mongoose.model('User', userSchema);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9tb2RlbHMvVXNlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLFFBQTZCLE1BQU0sVUFBVSxDQUFDO0FBQ3JELE9BQU8sTUFBTSxNQUFNLFFBQVEsQ0FBQztBQUM1QixPQUFPLEdBQUcsTUFBTSxjQUFjLENBQUM7QUFFL0IsTUFBTSxVQUFVLEdBQUcsRUFBRSxDQUFDO0FBbUJ0QixNQUFNLFVBQVUsR0FBRyxJQUFJLFFBQVEsQ0FBQyxNQUFNLENBQVE7SUFDMUMsSUFBSSxFQUFFO1FBQ0YsSUFBSSxFQUFFLE1BQU07UUFDWixTQUFTLEVBQUUsRUFBRTtRQUNiLFFBQVEsRUFBRSxJQUFJO0tBQ2pCO0lBQ0QsS0FBSyxFQUFFO1FBQ0gsSUFBSSxFQUFFLE1BQU07UUFDWixJQUFJLEVBQUUsSUFBSTtRQUNWLE1BQU0sRUFBRSxJQUFJO0tBQ2Y7SUFDRCxRQUFRLEVBQUU7UUFDTixJQUFJLEVBQUUsTUFBTTtRQUNaLFNBQVMsRUFBRSxHQUFHO1FBQ2QsUUFBUSxFQUFFLElBQUk7S0FDakI7SUFDRCxLQUFLLEVBQUU7UUFDSCxJQUFJLEVBQUUsTUFBTTtLQUNmO0lBQ0QsUUFBUSxFQUFFO1FBQ04sSUFBSSxFQUFFLE1BQU07S0FDZjtJQUNELElBQUksRUFBRTtRQUNGLElBQUksRUFBRSxNQUFNO1FBQ1osT0FBTyxFQUFFLENBQUM7S0FDYjtDQUNKLENBQUMsQ0FBQztBQUVILHNCQUFzQjtBQUN0QixVQUFVLENBQUMsR0FBRyxDQUFRLE1BQU0sRUFBRSxVQUFVLElBQUk7SUFDeEMsTUFBTSxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBRWxCLElBQUksSUFBSSxDQUFDLFVBQVUsQ0FBQyxVQUFVLENBQUMsRUFBRSxDQUFDO1FBQzlCLE1BQU0sQ0FBQyxPQUFPLENBQUMsVUFBVSxFQUFFLENBQUMsR0FBRyxFQUFFLElBQUksRUFBRSxFQUFFO1lBQ3JDLElBQUksR0FB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
