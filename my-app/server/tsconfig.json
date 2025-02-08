@@ -113,8 +113,10 @@
     "src/global.d.ts"
   ],
   "exclude": [
+    "node_modules",
+    "dist",
     "document",
-    "backup",
+    "backup"
   ],
   "ts-node": {
     "esm": true,
