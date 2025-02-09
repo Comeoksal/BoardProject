@@ -64,6 +64,7 @@ const postSchema = new mongoose.Schema<IPost>({
     commenters: {
         type: [String],
         default: [],
+        required: true,
     },
 });
 

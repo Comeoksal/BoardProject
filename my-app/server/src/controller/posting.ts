@@ -79,6 +79,9 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
                 return reply.status(400).send({ success: false, err: "포스트 찾기 오류" });
             }
             post.comments.push({ author: req.body.author, comment: req.body.comment, anonymous: req.body.anonymous })
+            if (req.body.anonymous) {
+                post.commenters.push(req.body.author);
+            }
             const updatedPost = await post.save();
             reply.status(200).send({ success: true, post: updatedPost });
         } catch (err) {
