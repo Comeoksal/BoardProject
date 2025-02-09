@@ -11,12 +11,13 @@ interface UploadBody {
     commenters: string[];
 }
 interface CommentBody {
+    userId: string;
     author: string;
     comment: string;
     anonymous: boolean;
 }
 interface LikeBody {
-    author: string;
+    userId: string;
 }
 interface PostParams {
     postId: string;
@@ -54,14 +55,14 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
     //postId로 좋아요 업로드 (좋아요 누른 사용자명으로 관리)
     fastify.put('/api/posts/:postId/like', async (req: FastifyRequest<{ Params: PostParams, Body: LikeBody }>, reply: FastifyReply) => {
         try {
-            const { author } = req.body;
+            const { userId } = req.body;
             const post = await Post.findById(req.params.postId);
             if (!post) {
                 return reply.status(400).send({ success: false, err: "포스트 찾기 오류" });
             }
-            const likeIndex = post.likes.indexOf(author);
+            const likeIndex = post.likes.indexOf(userId);
             if (likeIndex === -1) {
-                post.likes.push(author);
+                post.likes.push(userId);
             } else {
                 post.likes.splice(likeIndex, 1);
             }
@@ -78,7 +79,7 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
             if (!post) {
                 return reply.status(400).send({ success: false, err: "포스트 찾기 오류" });
             }
-            post.comments.push({ author: req.body.author, comment: req.body.comment, anonymous: req.body.anonymous })
+            post.comments.push({ userId: req.body.userId, author: req.body.author, comment: req.body.comment, anonymous: req.body.anonymous })
             if (req.body.anonymous) {
                 post.commenters.push(req.body.author);
             }

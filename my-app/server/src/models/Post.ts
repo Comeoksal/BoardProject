@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
 interface IComment {
+    userId: string;
     author: string;
     comment: string;
     anonymous: boolean;
@@ -18,6 +19,10 @@ interface IPost extends Document {
 interface IPostModel extends Model<IPost> { };
 interface ICommentModel extends Model<IComment> { };
 const commentSchema = new mongoose.Schema<IComment>({
+    userId: {
+        type: String,
+        required: true,
+    },
     author: {
         type: String,
         required: true,

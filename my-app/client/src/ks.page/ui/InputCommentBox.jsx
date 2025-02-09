@@ -41,6 +41,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
     const [anonymous, setAnonymous] = useState(false);
     const inputElem = useRef(null);
     const author = user?.name;
+    const userId = user._id;
     const handleLike = async () => {
         try {
             const response = await fetch(CONFIG.BACK_SERVER + `/api/posts/${postId}/like`, {
@@ -49,7 +50,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
                     'Content-Type': 'application/json'
                 },
                 credentials: "include",
-                body: JSON.stringify({ author })
+                body: JSON.stringify({ userId })
             })
             if (response.ok) {
                 if (isUserLike) {
@@ -80,7 +81,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
                     'Content-Type': 'application/json'
                 },
                 credentials: "include",
-                body: JSON.stringify({ author, comment, anonymous })
+                body: JSON.stringify({ userId, author, comment, anonymous })
             })
             const data = await response.json();
             if (response.ok) {
