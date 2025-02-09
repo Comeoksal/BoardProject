@@ -55,7 +55,7 @@ export default function Standard_PostWrite() {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify({ author, title, content, anonymous })
+                body: JSON.stringify({ author, title, content, anonymous, timestamp: new Date().toISOString() })
             })
             const data = await response.json();
             if (response.ok) {

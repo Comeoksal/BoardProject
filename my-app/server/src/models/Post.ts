@@ -12,6 +12,8 @@ interface IPost extends Document {
     anonymous: boolean;
     likes: string[];
     comments: IComment[];
+    timestamp: string;
+    commenters: string[];
 }
 interface IPostModel extends Model<IPost> { };
 interface ICommentModel extends Model<IComment> { };
@@ -54,7 +56,15 @@ const postSchema = new mongoose.Schema<IPost>({
     comments: {
         type: [commentSchema],
         default: [],
-    }
+    },
+    timestamp: {
+        type: String,
+        required: true,
+    },
+    commenters: {
+        type: [String],
+        default: [],
+    },
 });
 
 export const Post = mongoose.model<IPost, IPostModel>('Post', postSchema);

@@ -7,6 +7,8 @@ interface UploadBody {
     anonymous: boolean;
     likes: string[];
     comments: Array<{ author: string, comment: string }>;
+    timestamp: string;
+    commenters: string[];
 }
 interface CommentBody {
     author: string;

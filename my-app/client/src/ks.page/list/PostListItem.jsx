@@ -8,29 +8,28 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    border: 3px solid white;
+    background-color : rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(158, 158, 158);
     border-radius: 8px;
     cursor: pointer;
-    color : rgb(255, 255, 255);
-    :hover {
-        background: white;
-        color : black
-    };
+    color : rgb(0, 0, 0);
     gap : 8px;
 `
 const StyledTitle = styled.p`
     font-size : 20px;
-    font-weight : 500;
+    font-weight : 1000;
+    margin : 0;
 `
 const StyledAuthor = styled.p`
-    font-size : 15px;
+    font-size : 13px;
     font-weight : 500;
+    margin : 0;
 `
-export default function PostListItem({ title, author, onClick }) {
+export default function PostListItem({ title, author, onClick, like_count, comment_count }) {
     return (
         <Wrapper onClick={onClick}>
             <StyledTitle>{title}</StyledTitle>
-            <StyledAuthor>{author}</StyledAuthor>
+            <StyledAuthor>{`❤️${like_count} 💬${comment_count} | ${author}`}</StyledAuthor>
         </Wrapper>
     )
 }

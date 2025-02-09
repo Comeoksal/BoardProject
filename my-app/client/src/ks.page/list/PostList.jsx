@@ -45,6 +45,8 @@ export default function PostList(props) {
                         key={post._id}
                         title={post.title}
                         author={post.anonymous ? "익명" : post.author}
+                        like_count={post.likes.length}
+                        comment_count={post.comments.length}
                         onClick={() => navigate(`/postviewroom/${post._id}`)}
                     />
                 )
