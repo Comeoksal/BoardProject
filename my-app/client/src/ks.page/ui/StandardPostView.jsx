@@ -43,8 +43,9 @@ export default function Standard_PostView() {
     const [content, setContent] = useState('');
     const [like_count, setLike_count] = useState(0);
     const [comment_count, setComment_count] = useState(0);
-    const [isUserLike, setIsUserLike] = useState(false);
-    const author = user?.name;
+    const [isUserLike, setIsUserLike] = useState();
+    const [anonymous_number, setAnonymous_number] = useState();
+    const userId = user._id;
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -63,24 +64,30 @@ export default function Standard_PostView() {
                 setContent(data.content);
                 setLike_count(data.likes.length);
                 setComment_count(data.comments.length);
-                if (data.likes.includes(author)) {
+                if (data.likes.includes(userId)) {
                     setIsUserLike(true);
+                }
+                if (!data.commenters.includes(userId)) {
+                    setAnonymous_number(data.commenters.length + 1);
+                } else {
+                    setAnonymous_number(data.commenters.indexOf(userId) + 1);
                 }
             } catch (err) {
                 console.error("포스트 불러오기 중 문제 발생 ", err);
             }
         }
         fetchPost();
-    }, [author, postId, like_count, isUserLike]);
+    }, [postId, userId]);
     const handleBack = async () => {
         await navigate("/boardroom")
     }
-    const handleLikeCount = async (isUserLike) => {
+    const handleLikeCount = async () => {
         if (isUserLike) {
             await setLike_count(like_count - 1);
         } else {
             await setLike_count(like_count + 1);
         }
+        await setIsUserLike(!isUserLike);
     }
     const handleCommentCount = async () => {
         await setComment_count(comment_count + 1);
@@ -95,7 +102,7 @@ export default function Standard_PostView() {
                 <StyledTitle >{title}</StyledTitle>
                 <StyledContent>{content}</StyledContent>
             </PostContainer>
-            <InputCommentBox like_count={like_count} comment_count={comment_count} handleLikeCount={handleLikeCount} handleCommentCount={handleCommentCount} isUserLike={isUserLike} />
+            <InputCommentBox like_count={like_count} comment_count={comment_count} handleLikeCount={handleLikeCount} handleCommentCount={handleCommentCount} isUserLike={isUserLike} anonymous_number={anonymous_number} />
             <CommentList postId={postId} comment_count={comment_count} />
         </Wrapper>
     )

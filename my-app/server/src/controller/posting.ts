@@ -7,7 +7,7 @@ interface UploadBody {
     anonymous: boolean;
     likes: string[];
     comments: Array<{ author: string, comment: string }>;
-    timestamp: string;
+    timestamp: number;
     commenters: string[];
 }
 interface CommentBody {
@@ -15,6 +15,7 @@ interface CommentBody {
     author: string;
     comment: string;
     anonymous: boolean;
+    anonymous_number: number;
 }
 interface LikeBody {
     userId: string;
@@ -75,13 +76,20 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
     //postId로 댓글 하나 업로드하기
     fastify.post('/api/posts/:postId/comment', async (req: FastifyRequest<{ Params: PostParams, Body: CommentBody }>, reply: FastifyReply) => {
         try {
+            const { userId } = req.body;
+            const { author } = req.body;
+            const { comment } = req.body;
+            const { anonymous } = req.body;
+            const { anonymous_number } = req.body;
             const post = await Post.findById(req.params.postId);
             if (!post) {
                 return reply.status(400).send({ success: false, err: "포스트 찾기 오류" });
             }
-            post.comments.push({ userId: req.body.userId, author: req.body.author, comment: req.body.comment, anonymous: req.body.anonymous })
+            post.comments.push({ userId, author, comment, anonymous, anonymous_number })
             if (req.body.anonymous) {
-                post.commenters.push(req.body.author);
+                if (!post.commenters.includes(userId)) {
+                    post.commenters.push(userId);
+                }
             }
             const updatedPost = await post.save();
             reply.status(200).send({ success: true, post: updatedPost });

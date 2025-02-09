@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const StyledToggleButton = styled.button`
@@ -37,6 +37,9 @@ const StyledToggleButton = styled.button`
 export default function ToggleButton_Like({ title, onClick, borderColor, textColor, bgColor, hovertextColor, hoverbgColor, isUserLike }) {
     const [isActive, setIsActive] = useState(isUserLike);
 
+    useEffect(() => {
+        setIsActive(isUserLike);
+    }, [isUserLike])
     const handleClick = () => {
         setIsActive(!isActive);
         if (onClick) onClick();

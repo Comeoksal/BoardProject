@@ -26,10 +26,13 @@ const StyledAuthor = styled.p`
     margin : 0;
 `
 export default function PostListItem({ title, author, onClick, like_count, comment_count }) {
+    const stringLikeCount = like_count ? `❤️${like_count}` : ""
+    const stringCommentCount = comment_count ? ` 💬${comment_count}` : ""
+    const bar = (like_count || comment_count) ? " | " : ""
     return (
         <Wrapper onClick={onClick}>
             <StyledTitle>{title}</StyledTitle>
-            <StyledAuthor>{`❤️${like_count} 💬${comment_count} | ${author}`}</StyledAuthor>
+            <StyledAuthor>{stringLikeCount + stringCommentCount + bar + `${author}`}</StyledAuthor>
         </Wrapper>
     )
 }

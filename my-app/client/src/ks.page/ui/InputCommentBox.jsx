@@ -34,7 +34,7 @@ const FinishedButtonContainer = styled.div`
     gap : 4px;
     margin-left: auto;
 `
-export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, handleCommentCount, isUserLike }) => {
+export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, handleCommentCount, isUserLike, anonymous_number }) => {
     const { user } = useAuth();
     const { postId } = useParams();
     const [comment, setComment] = useState('');
@@ -53,11 +53,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
                 body: JSON.stringify({ userId })
             })
             if (response.ok) {
-                if (isUserLike) {
-                    handleLikeCount(true);
-                } else {
-                    handleLikeCount(false);
-                }
+                handleLikeCount();
             } else {
                 alert('좋아요 실패1');
             }
@@ -81,7 +77,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
                     'Content-Type': 'application/json'
                 },
                 credentials: "include",
-                body: JSON.stringify({ userId, author, comment, anonymous })
+                body: JSON.stringify({ userId, author, comment, anonymous, anonymous_number })
             })
             const data = await response.json();
             if (response.ok) {
@@ -98,7 +94,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
     return (
         <Wrapper>
             <ButtonsContainer>
-                <ToggleButtonLike title={`❤️좋아요 ${like_count}`} onClick={handleLike} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} />
+                <ToggleButtonLike title={`❤️좋아요 ${like_count}`} onClick={handleLike} borderColor={"rgb(220, 53, 69)"} textColor={"rgb(220, 53, 69)"} hoverbgColor={"rgb(220, 53, 69)"} hovertextColor={"rgb(220, 53, 69)"} isUserLike={isUserLike} />
                 <Button title={`💬댓글 ${comment_count}`} onClick={handleComment} />
             </ButtonsContainer>
             <CommentInputContainer>

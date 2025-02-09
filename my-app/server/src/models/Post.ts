@@ -5,6 +5,7 @@ interface IComment {
     author: string;
     comment: string;
     anonymous: boolean;
+    anonymous_number: number;
 }
 interface IPost extends Document {
     author: string;
@@ -13,7 +14,7 @@ interface IPost extends Document {
     anonymous: boolean;
     likes: string[];
     comments: IComment[];
-    timestamp: string;
+    timestamp: number;
     commenters: string[];
 }
 interface IPostModel extends Model<IPost> { };
@@ -34,6 +35,9 @@ const commentSchema = new mongoose.Schema<IComment>({
     anonymous: {
         type: Boolean,
         required: true,
+    },
+    anonymous_number: {
+        type: Number,
     }
 })
 const postSchema = new mongoose.Schema<IPost>({
@@ -63,7 +67,7 @@ const postSchema = new mongoose.Schema<IPost>({
         default: [],
     },
     timestamp: {
-        type: String,
+        type: Number,
         required: true,
     },
     commenters: {
