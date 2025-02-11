@@ -1,4 +1,5 @@
 import React from "react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import styled from "styled-components";
 import code from "../images/code.jpg"
 import StandardBoard from "../ui/StandardBoard";
@@ -16,9 +17,12 @@ const Container = styled.div`
 `;
 
 export default function BoardPage() {
+    const queryClient = new QueryClient();
     return (
-        <Container>
-            <StandardBoard />
-        </Container>
+        <QueryClientProvider client={queryClient}>
+            <Container>
+                <StandardBoard />
+            </Container>
+        </QueryClientProvider>
     )
 }

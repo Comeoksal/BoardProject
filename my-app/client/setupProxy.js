@@ -13,7 +13,7 @@ module.exports = function (app) {
             onProxyRes: (proxyRes) => {
                 proxyRes.headers['Access-Control-Allow-Origin'] = 'https://ksserver-496b.onrender.com';
                 proxyRes.headers['Access-Control-Allow-Credentials'] = 'true';
-                proxyRes.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS';
+                proxyRes.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS';
                 proxyRes.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization';
             }
         })

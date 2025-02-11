@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contextAPI/AuthContext";
 import styled from "styled-components";
 import PostList from "../list/PostList";
 import Button from "./Inputs/Button";
@@ -28,23 +27,10 @@ const PostListContainer = styled.div`
 `
 export default function Standard_Board() {
     const navigate = useNavigate();
-    const { isLoggedIn } = useAuth();
-    const handleWrite = async () => {
-        try {
-            if (!isLoggedIn) {
-                await alert('로그인이 필요합니다.');
-                await navigate("/loginroom");
-            } else {
-                await navigate("/postwriteroom")
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    }
     return (
         <Wrapper>
             <ButtonContainer>
-                <Button title={"글쓰기"} onClick={handleWrite} />
+                <Button title={"글쓰기"} onClick={() => navigate("/postwriteroom")} />
             </ButtonContainer>
             <PostListContainer>
                 <PostList />

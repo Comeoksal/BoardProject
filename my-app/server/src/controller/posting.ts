@@ -39,7 +39,7 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
     fastify.get('/api/posts/load', async (req: FastifyRequest, reply: FastifyReply) => {
         try {
             const posts = await Post.find({});
-            reply.status(200).send(posts);
+            reply.status(200).send(posts.reverse());
         } catch (err) {
             reply.status(400).send({ success: false, err: "포스트들의 불러오기 오류 " });
         }

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import InputEmail from "./Inputs/InputEmail.jsx";
 import InputPassword from "./Inputs/InputPassword.jsx";
 import Button from "./Inputs/Button.jsx";
-import { CONFIG } from "../config.ts"
+
 const StyledP = styled.p`
     position : absolute;
     font-size : 25px;
@@ -60,7 +60,7 @@ export default function Standard_Login() {
     const { fetchUserInfo } = useAuth();
     const handleLogin = async () => {
         try {
-            const response = await fetch(CONFIG.BACK_SERVER + "/api/users/login", {
+            const response = await fetch(process.env.REACT_APP_BACK_SERVER + "/api/users/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

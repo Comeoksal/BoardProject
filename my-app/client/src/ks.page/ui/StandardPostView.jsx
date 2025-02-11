@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../contextAPI/AuthContext.jsx";
 import styled from "styled-components";
 import Button from "./Inputs/Button.jsx";
-import { CONFIG } from "../config.ts";
 import CommentList from "../list/CommentList.jsx";
 import { InputCommentBox } from "./InputCommentBox.jsx";
 const Wrapper = styled.div`
@@ -49,7 +48,7 @@ export default function Standard_PostView() {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await fetch(CONFIG.BACK_SERVER + `/api/posts/${postId}`, {
+                const response = await fetch(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json'

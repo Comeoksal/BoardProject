@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CommentListItem from "./CommentListItem";
-import { CONFIG } from "../config.ts"
 
 const Wrapper = styled.div`
     width : 100%;
@@ -16,7 +15,7 @@ export default function CommentList({ postId, comment_count }) {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await fetch(CONFIG.BACK_SERVER + `/api/posts/${postId}/comments/load`, {
+                const response = await fetch(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}/comments/load`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json'

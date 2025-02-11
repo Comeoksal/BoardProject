@@ -1,7 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from 'axios';
-import { CONFIG } from "../config.ts"
-
 const AuthContext = createContext();
 AuthContext.displayName = "AuthContext";
 
@@ -11,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUserInfo = async () => {
         try {
-            const response = await axios.get(CONFIG.BACK_SERVER + '/api/users/auth', {
+            const response = await axios.get(process.env.REACT_APP_BACK_SERVER + '/api/users/auth', {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',

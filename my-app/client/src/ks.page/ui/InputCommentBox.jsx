@@ -6,7 +6,6 @@ import ToggleButtonLike from "./Inputs/ToggleButtonLike";
 import Button from "./Inputs/Button";
 import TextInput from "./Inputs/TextInput";
 import ToggleButton from "./Inputs/ToggleButton";
-import { CONFIG } from "../config.ts";
 
 const Wrapper = styled.div`
     width : 100%;
@@ -44,7 +43,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
     const userId = user._id;
     const handleLike = async () => {
         try {
-            const response = await fetch(CONFIG.BACK_SERVER + `/api/posts/${postId}/like`, {
+            const response = await fetch(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}/like`, {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json'
@@ -71,7 +70,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
     }
     const handleWriteComment = async () => {
         try {
-            const response = await fetch(CONFIG.BACK_SERVER + `/api/posts/${postId}/comment`, {
+            const response = await fetch(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}/comment`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

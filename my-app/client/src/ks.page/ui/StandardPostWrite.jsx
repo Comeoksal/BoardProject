@@ -6,7 +6,7 @@ import Input from "./Inputs/Input.jsx";
 import TextInput from "./Inputs/TextInput.jsx";
 import Button from "./Inputs/Button.jsx";
 import ToggleButton from "./Inputs/ToggleButton.jsx";
-import { CONFIG } from "../config.ts"
+
 const Wrapper = styled.div`
     width : 60%;
     height : 100%;
@@ -49,7 +49,7 @@ export default function Standard_PostWrite() {
     const author = user.name;
     const handleUploadPost = async () => {
         try {
-            const response = await fetch(CONFIG.BACK_SERVER + "/api/posts/upload", {
+            const response = await fetch(process.env.REACT_APP_BACK_SERVER + "/api/posts/upload", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -9,7 +9,6 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styled from "styled-components";
 import axios from "axios";
-import { CONFIG } from "../config.ts"
 
 const StyledSpan = styled.span`
         margin-top : 8px;
@@ -20,7 +19,7 @@ export default function Navbars() {
     const navigate = useNavigate();
     const handleLogout = async () => {
         try {
-            const response = await axios.post(CONFIG.BACK_SERVER + '/api/users/logout', {}, {
+            const response = await axios.post(process.env.REACT_APP_BACK_SERVER + '/api/users/logout', {}, {
                 withCredentials: true  // 반드시 설정하여 쿠키 전송
             });
 

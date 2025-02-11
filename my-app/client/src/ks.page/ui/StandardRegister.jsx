@@ -7,7 +7,6 @@ import InputPassword from "./Inputs/InputPassword.jsx";
 import InputPasswordCheck from "./Inputs/InputPasswordCheck.jsx";
 import Button from "./Inputs/Button.jsx";
 import Input from "./Inputs/Input.jsx";
-import { CONFIG } from "../config.ts"
 
 const Wrapper = styled.div`
     width: 500px; /* 너비 */
@@ -80,7 +79,7 @@ export default function Standard_Register() {
         }
         try {
             if (password === passwordCheck) {
-                const response = await fetch(CONFIG.BACK_SERVER + "/api/users/register", {
+                const response = await fetch(process.env.REACT_APP_BACK_SERVER + "/api/users/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
