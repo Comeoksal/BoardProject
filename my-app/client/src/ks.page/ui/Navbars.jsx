@@ -38,7 +38,7 @@ export default function Navbars() {
         try {
             if (!isLoggedIn) {
                 await alert('로그인이 필요합니다.');
-                navigate("/loginroom");
+                await navigate("/loginroom");
             } else {
                 await navigate("/boardroom")
             }
@@ -61,7 +61,9 @@ export default function Navbars() {
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">
-                        {isLoggedIn ? (
+                        {isLoggedIn === null ? (
+                            <span>Loading...</span>
+                        ) : isLoggedIn ? (
                             <>
                                 <StyledSpan className="me-3">안녕하세요, {user.name}님!</StyledSpan>
                                 <Button variant="outline-danger" onClick={handleLogout}>로그아웃</Button>
