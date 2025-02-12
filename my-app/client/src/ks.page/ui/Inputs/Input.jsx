@@ -15,6 +15,6 @@ const StyledInput = styled.input`
 `;
 export default function Input({ placeholder, type, value, onChange }) {
     return (
-        <StyledInput type={type} value={value} placeholder={placeholder || "입력"} onChange={onChange} ></StyledInput>
+        <StyledInput type={type} value={value} placeholder={placeholder || "입력"} onChange={onChange} maxLength={"28"} ></StyledInput>
     )
 }

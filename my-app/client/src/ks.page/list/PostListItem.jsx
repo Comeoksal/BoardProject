@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -20,19 +20,54 @@ const StyledTitle = styled.p`
     font-weight : 1000;
     margin : 0;
 `
+const StyledContent = styled.p`
+    font-size : 15px;
+    font-weight : 500;
+    margin : 0;
+`
 const StyledAuthor = styled.p`
     font-size : 13px;
     font-weight : 500;
     margin : 0;
 `
-export default function PostListItem({ title, author, onClick, like_count, comment_count }) {
-    const stringLikeCount = like_count ? `❤️${like_count}` : ""
-    const stringCommentCount = comment_count ? ` 💬${comment_count}` : ""
-    const bar = (like_count || comment_count) ? " | " : ""
+
+export default function PostListItem({ title, content, author, onClick, like_count, comment_count, timestamp }) {
+    const [currenttime, setCurrenttime] = useState(Date.now());
+
+    useEffect(() => {
+        setCurrenttime(Date.now());
+    }, []);
+
+    const stringLikeCount = like_count ? `❤️${like_count}` : "";
+    const stringCommentCount = comment_count ? ` 💬${comment_count}` : "";
+    const bar = (like_count || comment_count) ? " | " : "";
+
+    const formatTime = (timestampMs) => {
+        const diffMs = currenttime - timestampMs;
+        const diffMinutes = Math.floor(diffMs / (1000 * 60));
+        const oneHour = 60;
+        const oneDay = 60 * 24;
+
+        if (diffMinutes < oneHour) {
+            return diffMinutes === 0 ? "방금 전" : `${diffMinutes}분 전`;
+        } else if (diffMinutes < oneDay) {
+            const date = new Date(timestampMs);
+            const hours = String(date.getHours()).padStart(2, "0");
+            const minutes = String(date.getMinutes()).padStart(2, "0");
+            return `${hours}:${minutes}`;
+        } else {
+            const date = new Date(timestampMs);
+            const month = String(date.getMonth() + 1).padStart(2, "0");
+            const day = String(date.getDate()).padStart(2, "0");
+            return `${month}/${day}`;
+        }
+    };
+
     return (
         <Wrapper onClick={onClick}>
             <StyledTitle>{title}</StyledTitle>
-            <StyledAuthor>{stringLikeCount + stringCommentCount + bar + `${author}`}</StyledAuthor>
+            <StyledContent>{content}</StyledContent>
+            <StyledAuthor>{stringLikeCount + stringCommentCount + bar + formatTime(timestamp) + ` | ${author}`}</StyledAuthor>
         </Wrapper>
-    )
+    );
 }

@@ -16,7 +16,7 @@ const StyledTextarea = styled.textarea`
 
 function TextInput({ height, value, onChange, placeholder, ref }) {
 
-    return <StyledTextarea height={height} value={value} onChange={onChange} placeholder={placeholder} ref={ref} />;
+    return <StyledTextarea height={height} value={value} onChange={onChange} placeholder={placeholder} maxLength={"1000"} ref={ref} />;
 }
 
 export default TextInput;

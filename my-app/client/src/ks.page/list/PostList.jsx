@@ -30,6 +30,7 @@ export default function PostList() {
             return data;
         } catch (err) {
             console.error("포스트들 불러오기 중 문제 발생 ", err);
+            return [];
         }
     }
 
@@ -44,9 +45,11 @@ export default function PostList() {
                     <PostListItem
                         key={post._id}
                         title={post.title}
+                        content={post.content}
                         author={post.anonymous ? "익명" : post.author}
                         like_count={post.likes.length}
                         comment_count={post.comments.length}
+                        timestamp={post.timestamp}
                         onClick={() => navigate(`/postviewroom/${post._id}`)}
                     />
                 )

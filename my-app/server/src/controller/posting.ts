@@ -38,7 +38,17 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
     //글 전체 불러오기
     fastify.get('/api/posts/load', async (req: FastifyRequest, reply: FastifyReply) => {
         try {
-            const posts = await Post.find({});
+            const pure_posts = await Post.find({});
+            const posts = pure_posts.map(post => ({
+                _id: post._id,
+                author: post.anonymous ? "익명" : post.author,
+                title: post.title,
+                content: post.content.length >= 15 ? post.content.slice(0, 15) + "..." : post.content,
+                anonymous: post.anonymous,
+                likes: post.likes,
+                timestamp: post.timestamp,
+                comments: post.comments,
+            }));
             reply.status(200).send(posts.reverse());
         } catch (err) {
             reply.status(400).send({ success: false, err: "포스트들의 불러오기 오류 " });

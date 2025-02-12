@@ -5,7 +5,9 @@
   "homepage": "https://reactstudy.onrender.com/",
   "dependencies": {
     "@restart/ui": "^1.9.4",
+    "@tanstack/query-sync-storage-persister": "^5.66.0",
     "@tanstack/react-query": "^5.66.0",
+    "@tanstack/react-query-persist-client": "^5.66.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
