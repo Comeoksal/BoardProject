@@ -19,6 +19,7 @@ const Container = styled.div`
 `;
 
 export default function BoardPage() {
+    //🔥QueryClient 생성, 옵션으로 유효시간과, 캐싱 시간 설정
     const queryClient = new QueryClient({
         defaultOptions: {
             queries: {
@@ -27,16 +28,18 @@ export default function BoardPage() {
             }
         }
     });
+    //🔥쿼리를 담을 공간을 localStorage로 지정
     const localStoragePersister = createSyncStoragePersister({
         storage: window.localStorage,
     });
-
+    //🔥QueryClient 내용을 maxAge만큼 지속하도록 지정
     persistQueryClient({
         queryClient,
         persister: localStoragePersister,
-        maxAge: 1000 * 60 * 60 * 2,
+        maxAge: 1000 * 60 * 60 * 1,
     })
     return (
+        //🔥🔥쿼리를 사용할 페이지를 꼭! QueryCleintProvider로 감싸줘야함.
         <QueryClientProvider client={queryClient}>
             <Container>
                 <StandardBoard />
