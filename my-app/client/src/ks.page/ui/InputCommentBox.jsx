@@ -54,7 +54,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
             if (response.ok) {
                 handleLikeCount();
             } else {
-                alert('좋아요 실패1');
+                alert('너무 빠릅니다!');
             }
         } catch (err) {
             console.error('좋아요 실패2' + err);
