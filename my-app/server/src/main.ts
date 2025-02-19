@@ -35,7 +35,7 @@ fastify.register(cors, {
         }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ["Content-Type", "Authorization"]
 });
 fastify.register(fastifyCookie, {

@@ -1,6 +1,7 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
 import { Post } from "../models/Post.ts";
 interface UploadBody {
+    userId: string;
     author: string;
     title: string;
     content: string;
@@ -57,10 +58,30 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
     //postId로 글 하나 불러오기
     fastify.get('/api/posts/:postId', async (req: FastifyRequest<{ Params: PostParams }>, reply: FastifyReply) => {
         try {
-            const post = await Post.findById(req.params.postId);
+            const pure_post = await Post.findById(req.params.postId);
+            const post = {
+                _id: pure_post?._id,
+                userId: pure_post?.userId,
+                author: pure_post?.anonymous ? "익명" : pure_post?.author,
+                title: pure_post?.title,
+                content: pure_post?.content,
+                likes: pure_post?.likes,
+                timestamp: pure_post?.timestamp,
+                comments: pure_post?.comments,
+            }
             reply.status(200).send(post);
         } catch (err) {
             reply.status(400).send({ success: false, err: "포스트 불러오기 오류" })
+        }
+    })
+    fastify.delete('/api/posts/:postId', async (req: FastifyRequest<{ Params: PostParams }>, reply: FastifyReply) => {
+        try {
+            const deletePost = await Post.findByIdAndDelete(req.params.postId);
+            if (!deletePost) {
+                return reply.status(400).send({ success: false, err: "포스트 삭제 실패" })
+            }
+        } catch (err) {
+            reply.status(400).send({ success: false, err: "포스트 삭제 오류" })
         }
     })
     //postId로 좋아요 업로드 (좋아요 누른 사용자명으로 관리)

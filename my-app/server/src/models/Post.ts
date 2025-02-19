@@ -8,6 +8,7 @@ interface IComment {
     anonymous_number: number;
 }
 interface IPost extends Document {
+    userId: string;
     author: string;
     title: string;
     content: string;
@@ -41,6 +42,10 @@ const commentSchema = new mongoose.Schema<IComment>({
     }
 })
 const postSchema = new mongoose.Schema<IPost>({
+    userId: {
+        type: String,
+        required: true,
+    },
     author: {
         type: String,
         required: true,

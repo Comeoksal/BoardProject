@@ -46,6 +46,7 @@ export default function Standard_PostWrite() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [anonymous, setAnonymous] = useState(false);
+    const userId = user._id;
     const author = user.name;
     const handleUploadPost = async () => {
         try {
@@ -55,7 +56,7 @@ export default function Standard_PostWrite() {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify({ author, title, content, anonymous, timestamp: Date.now() })
+                body: JSON.stringify({ userId, author, title, content, anonymous, timestamp: Date.now() })
             })
             const data = await response.json();
             if (response.ok) {

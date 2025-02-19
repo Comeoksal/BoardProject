@@ -40,7 +40,7 @@ export const InputCommentBox = ({ like_count, comment_count, handleLikeCount, ha
     const [anonymous, setAnonymous] = useState(false);
     const inputElem = useRef(null);
     const author = user?.name;
-    const userId = user._id;
+    const userId = user?._id;
     const handleLike = async () => {
         try {
             const response = await fetch(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}/like`, {
