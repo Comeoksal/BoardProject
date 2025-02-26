@@ -2,7 +2,7 @@ import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } f
 import { User } from "../models/User.ts";
 import { auth } from "../middleware/auth.ts";
 
-// ✅ 요청 바디 타입 정의
+// 요청 바디 타입 정의
 interface RegisterBody {
     name: string;
     email: string;
@@ -17,7 +17,7 @@ interface LoginBody {
 
 export default async function authentication(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
-    // 🔹 회원가입 라우트
+    // 회원가입 라우트
     fastify.post('/api/users/register', async (req: FastifyRequest<{ Body: RegisterBody }>, reply: FastifyReply) => {
         try {
             const user = new User(req.body);
@@ -28,7 +28,7 @@ export default async function authentication(fastify: FastifyInstance, options: 
         }
     });
 
-    // 🔹 로그인 라우트
+    // 로그인 라우트
     fastify.post('/api/users/login', async (req: FastifyRequest<{ Body: LoginBody }>, reply: FastifyReply) => {
         try {
             const user = await User.findOne({ email: req.body.email });
@@ -55,7 +55,7 @@ export default async function authentication(fastify: FastifyInstance, options: 
         }
     });
 
-    // 🔹 인증 확인 (미들웨어 `auth` 필요)
+    // 인증 확인 (미들웨어 `auth` 필요)
     fastify.get('/api/users/auth', { preHandler: auth }, async (req: FastifyRequest, reply: FastifyReply) => {
         reply.status(200)
             .send({
@@ -68,7 +68,7 @@ export default async function authentication(fastify: FastifyInstance, options: 
             });
     });
 
-    // 🔹 로그아웃
+    // 로그아웃
     fastify.post('/api/users/logout', { preHandler: auth }, async (req: FastifyRequest, reply: FastifyReply) => {
         try {
             const user = await User.findOneAndUpdate({ _id: (req as any).user._id }, { token: "" });

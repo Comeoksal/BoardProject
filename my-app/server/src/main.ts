@@ -16,7 +16,7 @@ const __dirname = dirname(__filename);
 //
 const fastify = Fastify({
     logger: true,
-    trustProxy: true // 🔥 프록시 요청 허용 (ngrok 사용 시 필수)
+    trustProxy: true
 });
 // CORS 설정 등록
 fastify.register(cors, {
@@ -27,7 +27,7 @@ fastify.register(cors, {
             "https://reactstudy.onrender.com",
         ];
 
-        // 🔥 origin이 없거나 허용된 도메인에 포함되면 허용
+        // 
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
@@ -40,9 +40,9 @@ fastify.register(cors, {
 });
 fastify.register(fastifyCookie, {
     parseOptions: {
-        sameSite: "none", // 🔥 반드시 소문자로 작성
-        secure: true, // 🚀 운영 환경에서는 true, 개발 환경에서는 false
-        httpOnly: true, // 브라우저에서 접근 불가 (보안)
+        sameSite: "none",
+        secure: true,
+        httpOnly: true,
         path: '/',
     }
 });
@@ -50,7 +50,7 @@ fastify.register(fastifyCookie, {
 fastify.register(autoload, {
     dir: join(__dirname, "controller"),
     options: {
-        timeout: 30000  // 30초로 증가
+        timeout: 30000
     }
 });
 const start = async () => {

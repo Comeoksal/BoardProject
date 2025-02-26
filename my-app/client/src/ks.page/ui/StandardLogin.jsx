@@ -65,7 +65,7 @@ export default function Standard_Login() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                credentials: "include", // 🔥 쿠키 포함
+                credentials: "include", //
                 body: JSON.stringify({ email, password }),
             });
 
