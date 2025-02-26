@@ -7,6 +7,7 @@ import RegisterPage from "./ks.page/page/RegisterPage";
 import BoardPage from "./ks.page/page/BoardPage";
 import PostWritePage from "./ks.page/page/PostWritePage";
 import PostViewPage from "./ks.page/page/PostViewPage";
+import PostRewritePage from "./ks.page/page/PostRewritePage";
 import Navbars from "./ks.page/ui/Navbars";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/registerroom" element={<RegisterPage />} />
                     <Route path="/postwriteroom" element={<PostWritePage />} />
                     <Route path="/postviewroom/:postId" element={<PostViewPage />} />
+                    <Route path="/postrewriteroom/:postId" element={<PostRewritePage />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

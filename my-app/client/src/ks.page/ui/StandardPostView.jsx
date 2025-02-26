@@ -70,7 +70,6 @@ export default function Standard_PostView() {
                 }
 
                 const data = await response.json();
-
                 setTitle(data?.title || "제목 없음");
                 setContent(data?.content || "내용 없음");
                 setLike_count(data?.likes?.length || 0);
@@ -103,6 +102,9 @@ export default function Standard_PostView() {
     const handleCommentCount = async () => {
         await setComment_count(comment_count + 1);
     }
+    const onEdit = async () => {
+        navigate(`/postrewriteroom/${postId}`);
+    }
     const onDelete = async () => {
         try {
             const response = await axios.delete(process.env.REACT_APP_BACK_SERVER + `/api/posts/${postId}`, {}, {
@@ -120,7 +122,7 @@ export default function Standard_PostView() {
         <Wrapper>
             <BackButtonContainer>
                 <Button title={"뒤로가기"} onClick={handleBack} borderColor={"rgb(0, 123,255)"} textColor={"rgb(0, 123,255)"} hoverbgColor={"rgb(0, 123,255)"}></Button>
-                {((post_userId === userId) || (user?.isAdmin)) && <SelectList onDelete={onDelete} />}
+                {((post_userId === userId) || (user?.isAdmin)) && <SelectList onDelete={onDelete} onEdit={onEdit} />}
             </BackButtonContainer>
             <PostContainer>
                 <StyledTitle >{title}</StyledTitle>

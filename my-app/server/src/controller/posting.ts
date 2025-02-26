@@ -11,6 +11,11 @@ interface UploadBody {
     timestamp: number;
     commenters: string[];
 }
+interface UpdateBody {
+    title: string;
+    content: string;
+    anonymous: boolean;
+}
 interface CommentBody {
     userId: string;
     author: string;
@@ -74,6 +79,26 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
             reply.status(400).send({ success: false, err: "포스트 불러오기 오류" })
         }
     })
+    //postId로 불러온 글 수정하기
+    fastify.put('/api/posts/:postId', async (req: FastifyRequest<{ Params: PostParams, Body: UpdateBody }>, reply: FastifyReply) => {
+        try {
+            const { postId } = req.params;
+            const { title, content, anonymous } = req.body;
+            const post = await Post.findById(postId);
+            if (!post) {
+                return reply.status(404).send({ message: '포스트 없음' });
+            }
+            post.title = title;
+            post.content = content;
+            post.anonymous = anonymous;
+
+            await post.save();
+        } catch (err) {
+            console.error(err);
+            return reply.status(500).send({ message: '서버 오류 발생' });
+        }
+    })
+    //postId로 글 하나 삭제하기
     fastify.delete('/api/posts/:postId', async (req: FastifyRequest<{ Params: PostParams }>, reply: FastifyReply) => {
         try {
             const deletePost = await Post.findByIdAndDelete(req.params.postId);
