@@ -1,24 +1,30 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import Fastify from "fastify";
-import cors from '@fastify/cors'
 import mongoose from "mongoose";
-mongoose.connect(process.env.MongoURI!)
-    .then(() => console.log('MongoDB Connected...'))
-    .catch(err => console.log(err))
+import cors from '@fastify/cors'
 import fastifyCookie from "@fastify/cookie";
 //Autoload 5 line
 import autoload from "@fastify/autoload";
 import { fileURLToPath } from "url";
-import { dirname, join, resolve } from "path";
+import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-//
+dotenv.config();
+//DB 연결
+export const dbconnect = async () => {
+    try {
+        mongoose.connect(process.env.MongoURI!)
+        console.log("MongoDB connected..");
+    } catch (err) {
+        console.error("DB connecting error", err);
+    }
+}
+//Fastify 설정
 const fastify = Fastify({
     logger: true,
     trustProxy: true
 });
-// CORS 설정 등록
+// CORS 설정
 fastify.register(cors, {
     origin: (origin, callback) => {
         const allowedOrigins = [
@@ -26,8 +32,6 @@ fastify.register(cors, {
             "https://kspage.netlify.app",
             "https://reactstudy.onrender.com",
         ];
-
-        // 
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
@@ -38,6 +42,7 @@ fastify.register(cors, {
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ["Content-Type", "Authorization"]
 });
+// 쿠키 설정
 fastify.register(fastifyCookie, {
     parseOptions: {
         sameSite: "none",
@@ -53,9 +58,11 @@ fastify.register(autoload, {
         timeout: 30000
     }
 });
+//서버 실행
 const start = async () => {
     const PORT = parseInt(process.env.PORT!);
     try {
+        await dbconnect();
         await fastify.listen({ port: PORT, host: '0.0.0.0' });
         console.log(`Fastify Server Running at ${PORT} port`);
     } catch (err) {
@@ -63,5 +70,4 @@ const start = async () => {
         process.exit(1);
     }
 };
-
 start();
