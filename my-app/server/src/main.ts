@@ -13,7 +13,11 @@ dotenv.config();
 //DB 연결
 export const dbconnect = async () => {
     try {
-        mongoose.connect(process.env.MongoURI!)
+        const uri = process.env.MongoURI;
+        if (!uri) {
+            throw new Error("Mongo uri is not defined");
+        }
+        await mongoose.connect(uri);
         console.log("MongoDB connected..");
     } catch (err) {
         console.error("DB connecting error", err);
