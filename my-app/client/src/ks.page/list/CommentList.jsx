@@ -41,7 +41,7 @@ export default function CommentList({ postId, comment_count }) {
                     <CommentListItem
                         key={comment._id}
                         comment={comment.comment}
-                        author={comment.anonymous ? `익명${comment.anonymous_number}` : comment.author}
+                        author={!comment.anonymous ? comment.author : comment.anonymous_number === -1 ? '익명(글쓴이)' : `익명${comment.anonymous_number}`}
                     />
                 )
             })}

@@ -76,10 +76,14 @@ export default function Standard_PostView() {
                 setComment_count(data?.comments?.length || 0);
                 setIsUserLike(data?.likes?.includes(userId) || false);
                 setPost_userId(data?.userId || "");
-                if (!data?.commenters?.includes(userId)) {
-                    setAnonymous_number((data?.commenters?.length || 0) + 1);
+                if (data?.userId === userId) {
+                    setAnonymous_number(-1);
                 } else {
-                    setAnonymous_number(data.commenters.indexOf(userId) + 1);
+                    if (!data?.commenters?.includes(userId)) {
+                        setAnonymous_number((data?.commenters?.length || 0) + 1);
+                    } else {
+                        setAnonymous_number(data?.commenters?.indexOf(userId) + 1);
+                    }
                 }
             } catch (err) {
                 console.error("포스트 불러오기 중 문제 발생 ", err);

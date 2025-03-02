@@ -54,10 +54,9 @@ export default function Navbars() {
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" navbarScroll>
                         <Nav.Link onClick={handleBoardroom}>게시판</Nav.Link>
-                        <Nav.Link onClick={() => { navigate('/chatroom') }}>채팅방</Nav.Link>
                         <NavDropdown title="Link" id="navbarScrollingDropdown">
-                            <NavDropdown.Item href="https://github.com/Ksieon">GitHub</NavDropdown.Item>
-                            <NavDropdown.Item href="https://www.notion.so/afe1d291cefa46b0bae463488592f55b">Notion</NavDropdown.Item>
+                            <NavDropdown.Item href="https://github.com/Comeoksal">GitHub</NavDropdown.Item>
+                            <NavDropdown.Item href="https://zest-property-53e.notion.site/PS-Java-18ebe780857480e7a14aedf54a2a7d5e">Notion</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">
