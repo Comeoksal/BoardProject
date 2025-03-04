@@ -1,8 +1,5 @@
 # React+Node+MongoDB WebFullStack Board project
-Frontend : React/
-Backend : Nodejs/
-DB : MongoDB/
-Deploy : [https://dashboard.render.com/](https://dashboard.render.com/)
+🔵Frontend : React/ 🟢Backend : Nodejs/ ⭕DB : MongoDB/ 🟤Deploy : [https://dashboard.render.com/](https://dashboard.render.com/)
 ### You can experience it at the following link(배포 환경이 무료버전이라 서버 초기 로딩이 걸립니다.)
 -> https://reactstudy.onrender.com/
 ## Problem
