@@ -2,7 +2,7 @@
 🔵Frontend : React/ 🟢Backend : Nodejs/ ⭕DB : MongoDB/ 🟤Deploy : [https://dashboard.render.com/](https://dashboard.render.com/)
 ## You can experience it at the following link(배포 환경이 무료버전이라 서버 초기 로딩이 걸립니다.)
 -> https://reactstudy.onrender.com/
-## ❗Problem
+## ❗Problem❗
 ### ✅Frontend(React)
 1. Lack of css skill, design sense (css 능력 부족, 디자인 감각 부족)
 2. Promiscuous folder structure, Component structure with low reusability (난잡한 리액트 폴더 구조, 재사용성이 낮은 컴포넌트 구조)
