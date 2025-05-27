@@ -35,6 +35,7 @@ fastify.register(cors, {
             "http://localhost:3000",
             "https://kspage.netlify.app",
             "https://reactstudy.onrender.com",
+            "https://xss-game.appspot.com/",
         ];
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
