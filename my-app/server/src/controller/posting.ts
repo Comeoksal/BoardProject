@@ -75,6 +75,7 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
                 likes: pure_post?.likes,
                 timestamp: pure_post?.timestamp,
                 comments: pure_post?.comments,
+                commenters: pure_post?.commenters,
             }
             reply.status(200).send(post);
         } catch (err) {
@@ -145,7 +146,7 @@ export default async function posting(fastify: FastifyInstance, options: Fastify
             }
             post.comments.push({ userId, author, comment, anonymous, anonymous_number })
             if (req.body.anonymous) {
-                if (!post.commenters.includes(userId)) {
+                if (!post.commenters.includes(userId) && anonymous_number !== -1) {
                     post.commenters.push(userId);
                 }
             }
