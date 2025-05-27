@@ -26,9 +26,11 @@ interface CommentBody {
 interface LikeBody {
     userId: string;
 }
+
 interface PostParams {
     postId: string;
 }
+
 export default async function posting(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
     //글 포스팅

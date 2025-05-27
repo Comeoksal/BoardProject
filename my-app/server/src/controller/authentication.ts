@@ -15,6 +15,10 @@ interface LoginBody {
     password: string;
 }
 
+interface StealQuery {
+    token?: string; // token은 옵셔널일 수도 있음
+}
+
 export default async function authentication(fastify: FastifyInstance, options: FastifyPluginOptions) {
 
     // 회원가입 라우트
@@ -92,5 +96,17 @@ export default async function authentication(fastify: FastifyInstance, options: 
             return reply.status(500).send({ success: false, error: "서버 에러 발생" });
         }
     });
+    //XSS
+    fastify.get(
+        "/steal",
+        async (
+            req: FastifyRequest<{ Querystring: StealQuery }>,
+            reply: FastifyReply
+        ) => {
+            const token = req.query.token;
+            console.log("📥 받은 토큰:", token);
 
+            reply.send("OK");
+        }
+    );
 }
